@@ -37,10 +37,17 @@ namespace GenericListExercise
             try
             {
                 //Get the string from the textbox and assigning it in the array
-                score.MaxPoints = Convert.ToInt64(txtScore.Text.Trim());
+                int grade = Convert.ToInt32(txtScore.Text.Trim());
 
-                scoreGet.Add(score);
-                MessageBox.Show($"Grade added to list {score.MaxPoints}");
+                foreach(Score item in scoreGet)
+                {
+                    if (grade <= item.MaxPoints)
+                    {
+                        string msg = $"The grade is : {item.Grade}";
+                        MessageBox.Show(msg);
+                        break;
+                    }
+                }
 
             }
             catch (Exception ex)
@@ -48,6 +55,30 @@ namespace GenericListExercise
                 MessageBox.Show(ex.Message, ex.GetType().ToString());
 
             }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //Creates the elements inside the array list
+            score.MaxPoints = 299;
+            score.Grade = "F"; 
+            scoreGet.Add(score);
+
+            score.MaxPoints = 349;
+            score.Grade = "D";
+            scoreGet.Add(score);
+
+            score.MaxPoints = 399;
+            score.Grade = "C";
+            scoreGet.Add(score);
+
+            score.MaxPoints = 449;
+            score.Grade = "B";
+            scoreGet.Add(score);
+
+            score.MaxPoints = 500;
+            score.Grade = "A";
+            scoreGet.Add(score);
         }
     }
 }
